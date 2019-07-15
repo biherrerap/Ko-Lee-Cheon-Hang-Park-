@@ -16,5 +16,37 @@ Han habido bastantes esfuerzos para desarrollar cifrados de llave pública alter
 
 Se discuten las características operativas teóricas del protocolo propuesto y los parámetros de seguridad / longitud del mensaje para futuras implementaciones.Debido a que el protocolo Ko-Lee-Hang-Park, no es posible comparar su desempeño con el de otros cifrados de llave pública. Recordemos que el protocolo usa tres trenzas, <math>x \in B_{l+r},a \in LB_l y b \in RB_r </math>, y el texto cifrado es <math>(bxb^{-1},H(abxa^{-1}b^{-1} \oplus m))</math>. Cuando se trabaja con trenzas, debemos considerara dos parámetros, el índice de la hebra y la longitud canónica. Por simplicidad, asumimos que los índices de las hebras en nuestro protocolo son <math>l=r=\frac{n}{2}</math> y las longitudes canónicas son <math>len(x)=len(a)=len(b)=p</math>. Las siguientes son las discusiones acerca de las características de operación del protocolo:
 
-   1. Una <math>n-</math>permutación puede ser representada por un entero <math>0 \leq N < N!</math>. Mientras <math>n!~exp(nlogn)</math>, una hebra con <math>p</math>cantidad de factores canónicos puede ser representada por una cadena de bits de tamaño <math>pn \; log \; n</math>.
-   2. Para hebras <math>y_1,y_2 \in B_n, len(y_1,y_2) \leq len(y_1) + len(y_2)</math> y para <math>y_1 \in LB_\ell,y_2 \; \in \; RB_r, len(y_1,y_2) = max(len(y_1),len(y_2))</math>. Entonces<math>len(bxb^{-1})</math> y <math>len(abxa^{-1}b^{-1})</math> son a lo sumo <math>3p</math>. Para selecciones genéricas de <math>a,b</math> y <math>x</math>, estos son no menores que <math>2p</math>
+ 1. Una <math>n-</math>permutación puede ser representada por un entero <math>0 \leq N < N!</math>. Mientras <math>n!~exp(nlogn)</math>, una hebra con <math>p</math>cantidad de factores canónicos puede ser representada por una cadena de bits de tamaño <math>pn \; log \; n</math>.
+ 2. Para hebras <math>y_1,y_2 \in B_n, len(y_1,y_2) \leq len(y_1) + len(y_2)</math> y para <math>y_1 \in LB_\ell,y_2 \; \in \; RB_r, len(y_1,y_2) = max(len(y_1),len(y_2))</math>. Entonces<math>len(bxb^{-1})</math> y <math>len(abxa^{-1}b^{-1})</math> son a lo sumo <math>3p</math>. Para selecciones genéricas de <math>a,b</math> y <math>x</math>, estos son no menores que <math>2p</math>. Además, asumimos que <math>len(bxb^{-1})</math> y <math>len(abxba^{-1}b^{-1})</math> están entre <math>2p</math> y <math>3p</math>.
+ 3. El tamaño de la llave privada <math>a</math> es <math>p\ell \; log \; \ell \; ~ p\frac{n}{2}log\frac{n}{2} ~ \frac{1}{2}pn \; log \; n</math>.
+ 4. El tamaño de la llave pública <math>bxb^{-1}</math> es a lo sumo <math>3pn \; log \; n</math>.
+
+{| class="wikitable"
+|-
+!
+!
+|-
+| Bloque de texto plano
+| bits de <math>pn \; log \; n</math>
+|-
+| Bloque de texto cifrado
+| bits de <math>4pn \; log \; n</math>
+|-
+| Velocidad de encriptado
+| <math>O(p^2n \; log \; n)</math>
+|-
+| Velocidad de desencriptado
+| <math>O(p^2n \; log \; n)</math>
+|-
+| Expansión de mensajes
+| <math>4-1</math>
+|-
+| Longitud de llave privada
+| bits de<math>\frac{1}{2}pn \; log \; n \; bits</math>
+|-
+| Longitud de llave pública
+| bits de <math>3pn \; log \; n</math>
+|-
+| Dificultad de un ataque de fuerza bruta
+| <math>(\frac{n}{2}!)^p \; ~ \; exp(\frac{1}{2}pn\; log \; n)</math>
+|}
